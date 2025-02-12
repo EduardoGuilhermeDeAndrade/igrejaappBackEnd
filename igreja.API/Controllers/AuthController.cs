@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController : ControllerBase
+public class AuthController : ControllerBase //Alteração para testes de merge
 {
     private readonly IAuthService _authService;
 
