@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\AppIgreja.Server.props" />
-</Project>
