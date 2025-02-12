@@ -10,3 +10,15 @@ C:\App\igreja\igreja.Domain\obj\Debug\net9.0\igreja.Domain.dll
 C:\App\igreja\igreja.Domain\obj\Debug\net9.0\refint\igreja.Domain.dll
 C:\App\igreja\igreja.Domain\obj\Debug\net9.0\igreja.Domain.pdb
 C:\App\igreja\igreja.Domain\obj\Debug\net9.0\ref\igreja.Domain.dll
+C:\App\igrejaApp\igreja.Domain\bin\Debug\net9.0\igreja.Domain.deps.json
+C:\App\igrejaApp\igreja.Domain\bin\Debug\net9.0\igreja.Domain.dll
+C:\App\igrejaApp\igreja.Domain\bin\Debug\net9.0\igreja.Domain.pdb
+C:\App\igrejaApp\igreja.Domain\obj\Debug\net9.0\igreja.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\App\igrejaApp\igreja.Domain\obj\Debug\net9.0\igreja.Domain.AssemblyInfoInputs.cache
+C:\App\igrejaApp\igreja.Domain\obj\Debug\net9.0\igreja.Domain.AssemblyInfo.cs
+C:\App\igrejaApp\igreja.Domain\obj\Debug\net9.0\igreja.Domain.csproj.CoreCompileInputs.cache
+C:\App\igrejaApp\igreja.Domain\obj\Debug\net9.0\igreja.Domain.sourcelink.json
+C:\App\igrejaApp\igreja.Domain\obj\Debug\net9.0\igreja.Domain.dll
+C:\App\igrejaApp\igreja.Domain\obj\Debug\net9.0\refint\igreja.Domain.dll
+C:\App\igrejaApp\igreja.Domain\obj\Debug\net9.0\igreja.Domain.pdb
+C:\App\igrejaApp\igreja.Domain\obj\Debug\net9.0\ref\igreja.Domain.dll
