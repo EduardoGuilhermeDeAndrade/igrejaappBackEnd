@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:52010",
+"RedirectUrl": "",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "C:\\App\\igreja\\AppIgreja\\AppIgreja.Server\\..\\appigreja.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

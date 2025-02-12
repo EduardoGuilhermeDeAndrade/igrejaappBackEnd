@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "HL0rUOO21yAdlmUvDFuKBRSCuNFkX0mPnyGCEhWNlC8=",
+  "Source": "igreja.API",
+  "BasePath": "_content/igreja.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
