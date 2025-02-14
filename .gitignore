@@ -485,3 +485,7 @@ $RECYCLE.BIN/
 
 # Ignora arquivos do visual studio
 .vs/
+
+#ignora arquivos gerados
+bin/
+obj/
