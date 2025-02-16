@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj": {}
+    "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj": {}
   },
   "projects": {
-    "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj": {
+    "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj",
+        "projectUniqueName": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj",
         "projectName": "igreja.Domain",
-        "projectPath": "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj",
+        "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj",
         "packagesPath": "C:\\Users\\Eduardo\\.nuget\\packages\\",
-        "outputPath": "C:\\App\\igrejaApp\\igreja.Domain\\obj\\",
+        "outputPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

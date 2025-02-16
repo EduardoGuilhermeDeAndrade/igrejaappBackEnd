@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\App\\igrejaApp\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj": {}
+    "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj": {}
   },
   "projects": {
-    "C:\\App\\igrejaApp\\igreja.Application\\igreja.Application.csproj": {
+    "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Application\\igreja.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\App\\igrejaApp\\igreja.Application\\igreja.Application.csproj",
+        "projectUniqueName": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Application\\igreja.Application.csproj",
         "projectName": "igreja.Application",
-        "projectPath": "C:\\App\\igrejaApp\\igreja.Application\\igreja.Application.csproj",
+        "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Application\\igreja.Application.csproj",
         "packagesPath": "C:\\Users\\Eduardo\\.nuget\\packages\\",
-        "outputPath": "C:\\App\\igrejaApp\\igreja.Application\\obj\\",
+        "outputPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -33,11 +33,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj": {
-                "projectPath": "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj"
+              "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj": {
+                "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj"
               },
-              "C:\\App\\igrejaApp\\igreja.Infrastructure\\igreja.Infrastructure.csproj": {
-                "projectPath": "C:\\App\\igrejaApp\\igreja.Infrastructure\\igreja.Infrastructure.csproj"
+              "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Infrastructure\\igreja.Infrastructure.csproj": {
+                "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Infrastructure\\igreja.Infrastructure.csproj"
               }
             }
           }
@@ -95,14 +95,14 @@
         }
       }
     },
-    "C:\\App\\igrejaApp\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj": {
+    "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\App\\igrejaApp\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj",
+        "projectUniqueName": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj",
         "projectName": "igreja.CrossCutting.IoC",
-        "projectPath": "C:\\App\\igrejaApp\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj",
+        "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj",
         "packagesPath": "C:\\Users\\Eduardo\\.nuget\\packages\\",
-        "outputPath": "C:\\App\\igrejaApp\\igreja.CrossCutting.IoC\\obj\\",
+        "outputPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.CrossCutting.IoC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -124,14 +124,14 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\App\\igrejaApp\\igreja.Application\\igreja.Application.csproj": {
-                "projectPath": "C:\\App\\igrejaApp\\igreja.Application\\igreja.Application.csproj"
+              "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Application\\igreja.Application.csproj": {
+                "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Application\\igreja.Application.csproj"
               },
-              "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj": {
-                "projectPath": "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj"
+              "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj": {
+                "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj"
               },
-              "C:\\App\\igrejaApp\\igreja.Infrastructure\\igreja.Infrastructure.csproj": {
-                "projectPath": "C:\\App\\igrejaApp\\igreja.Infrastructure\\igreja.Infrastructure.csproj"
+              "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Infrastructure\\igreja.Infrastructure.csproj": {
+                "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Infrastructure\\igreja.Infrastructure.csproj"
               }
             }
           }
@@ -177,14 +177,14 @@
         }
       }
     },
-    "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj": {
+    "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj",
+        "projectUniqueName": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj",
         "projectName": "igreja.Domain",
-        "projectPath": "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj",
+        "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj",
         "packagesPath": "C:\\Users\\Eduardo\\.nuget\\packages\\",
-        "outputPath": "C:\\App\\igrejaApp\\igreja.Domain\\obj\\",
+        "outputPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -243,14 +243,14 @@
         }
       }
     },
-    "C:\\App\\igrejaApp\\igreja.Infrastructure\\igreja.Infrastructure.csproj": {
+    "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Infrastructure\\igreja.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\App\\igrejaApp\\igreja.Infrastructure\\igreja.Infrastructure.csproj",
+        "projectUniqueName": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Infrastructure\\igreja.Infrastructure.csproj",
         "projectName": "igreja.Infrastructure",
-        "projectPath": "C:\\App\\igrejaApp\\igreja.Infrastructure\\igreja.Infrastructure.csproj",
+        "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Infrastructure\\igreja.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Eduardo\\.nuget\\packages\\",
-        "outputPath": "C:\\App\\igrejaApp\\igreja.Infrastructure\\obj\\",
+        "outputPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -272,8 +272,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj": {
-                "projectPath": "C:\\App\\igrejaApp\\igreja.Domain\\igreja.Domain.csproj"
+              "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj": {
+                "projectPath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Domain\\igreja.Domain.csproj"
               }
             }
           }
