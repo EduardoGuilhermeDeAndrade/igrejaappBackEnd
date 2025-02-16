@@ -489,3 +489,24 @@ $RECYCLE.BIN/
 #ignora arquivos gerados
 bin/
 obj/
+
+# Ignorar pastas de compilação
+bin/
+obj/
+
+# Ignorar arquivos de depuração e símbolos
+*.pdb
+*.dll
+*.exe
+
+# Ignorar arquivos de configuração do NuGet
+*.nuget.dgspec.json
+project.assets.json
+project.nuget.cache
+
+# Ignorar arquivos de usuário do Visual Studio
+*.user
+*.suo
+
+# Ignorar pasta .vs (gerada pelo Visual Studio)
+.vs/
