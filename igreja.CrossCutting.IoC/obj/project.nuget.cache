@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6Rj7NocTzkw=",
+  "dgSpecHash": "tDO1Mmy5H1U=",
   "success": true,
-  "projectFilePath": "C:\\App\\igrejaApp\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj",
+  "projectFilePath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.CrossCutting.IoC\\igreja.CrossCutting.IoC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Eduardo\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Eduardo\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
