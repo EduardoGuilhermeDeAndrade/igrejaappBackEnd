@@ -20,6 +20,18 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
+    public async Task<IActionResult> GetUsers()
+    {
+        var users = await _userRepository.GetUsersResponsableTaskAsync();
+        if (users.Count() == 0)
+            return NotFound();
+
+        var usersDto = _mapper.Map<IEnumerable<UserDto>>(users);
+
+        return Ok(usersDto);
+    }
+
+    [HttpGet("responsible-user-task")]
     public async Task<IActionResult> GetUsersResponsableTask()
     {
         var users = await _userRepository.GetUsersResponsableTaskAsync();

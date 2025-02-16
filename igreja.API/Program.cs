@@ -98,7 +98,7 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 
     // Inicializa os dados
-    SeedData.Initialize(context);
+    //SeedData.Initialize(context);
 }
 
 if (app.Environment.IsDevelopment())

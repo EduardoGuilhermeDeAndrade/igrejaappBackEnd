@@ -1,13 +1,14 @@
 ﻿using igreja.Application.DTOs.Church;
 using igreja.Application.Interfaces;
 using igreja.Domain.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace church.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    //[Authorize] // Garante que somente usuários autenticados acessem
+    [Authorize] // Garante que somente usuários autenticados acessem
     public class ChurchController : ControllerBase
     {
         private readonly IChurchService _churchService;

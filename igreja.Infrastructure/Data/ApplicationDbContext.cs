@@ -142,14 +142,17 @@ namespace igreja.Infrastructure.Data
         {
             var userId = _userContextProvider.GetCurrentUserId();
 
-            //if (userId == Guid.Empty)
-                //throw new UnauthorizedAccessException("Usuário não autenticado.");
+            if (userId == Guid.Empty)
+                return;
 
             foreach (var entry in ChangeTracker.Entries())
             {
                 if (entry.Entity is EntityUser entityUser && entry.State == EntityState.Added)
                 {
-                    entityUser.UserId = userId;
+                    if (entityUser.UserId == Guid.Empty) // Só define se estiver vazio
+                    {
+                        entityUser.UserId = userId;
+                    }
                 }
             }
         }
