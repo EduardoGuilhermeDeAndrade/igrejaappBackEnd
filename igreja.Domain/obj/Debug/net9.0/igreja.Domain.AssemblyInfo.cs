@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("igreja.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f048eb67cbf5f0543f5bc3abcbdee3ecb51ecd8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6e408654d99bd82dcfa49c26c93bac3e3767d2d")]
 [assembly: System.Reflection.AssemblyProductAttribute("igreja.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("igreja.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

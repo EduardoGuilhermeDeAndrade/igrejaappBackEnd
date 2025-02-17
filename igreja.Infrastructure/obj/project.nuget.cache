@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m9mEwfAT+6Q=",
+  "dgSpecHash": "qsp12tpgl80=",
   "success": true,
-  "projectFilePath": "C:\\App\\igrejaApp\\igreja.Infrastructure\\igreja.Infrastructure.csproj",
+  "projectFilePath": "C:\\App\\AppIgreja\\igrejaappBackEnd\\igreja.Infrastructure\\igreja.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Eduardo\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Eduardo\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

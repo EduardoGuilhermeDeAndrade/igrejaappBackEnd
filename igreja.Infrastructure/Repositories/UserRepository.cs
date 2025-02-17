@@ -20,9 +20,11 @@ namespace Igreja.Infrastructure.Repositories
 
         public async Task<User?> GetUserByUsernameAsync(string username)
         {
+
             return await _context.Users
                 .IgnoreQueryFilters()
                 .FirstOrDefaultAsync(u => u.Username.ToLower().Contains(username.ToLower()) && u.Deleted == false);
+
         }
 
         /// <summary>

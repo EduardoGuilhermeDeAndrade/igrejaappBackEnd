@@ -20,6 +20,7 @@ public class UserController : ControllerBase
         _mapper = mapper;
     }
 
+
     /// <summary>
     /// Obtém a lista de todos os usuários cadastrados.
     /// </summary>
