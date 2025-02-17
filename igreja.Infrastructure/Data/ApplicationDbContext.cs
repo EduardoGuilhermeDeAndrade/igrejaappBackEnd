@@ -23,6 +23,7 @@ namespace igreja.Infrastructure.Data
         public DbSet<Temple> Temples { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Church> Churchs { get; set; }
+        public DbSet<Tenant> Tenants { get; set; }
         public DbSet<FinancialMovement> FinancialMovements { get; set; }
         public DbSet<AccountApplication> AccountApplications { get; set; }
 

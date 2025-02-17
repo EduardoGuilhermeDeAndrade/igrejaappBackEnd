@@ -6,7 +6,7 @@ namespace igreja.Domain.Models
     {
         public DateTime MovementDate { get; set; }
         public string MovementType { get; set; } = string.Empty; // Entrada ou Saída
-        public decimal Value { get; set; }
+        public Decimal Value { get; set; }
         public string Description { get; set; } = string.Empty;
         public string ContributionType { get; set; } = string.Empty;
         public Guid TempleId { get; set; }

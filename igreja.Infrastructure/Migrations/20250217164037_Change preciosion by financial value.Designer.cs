@@ -12,8 +12,8 @@ using igreja.Infrastructure.Data;
 namespace igreja.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241217220642_Initial")]
-    partial class Initial
+    [Migration("20250217164037_Change preciosion by financial value")]
+    partial class Changepreciosionbyfinancialvalue
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,15 +41,12 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Descripton")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Number")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
@@ -63,6 +60,38 @@ namespace igreja.Infrastructure.Migrations
                     b.ToTable("AccountApplications");
                 });
 
+            modelBuilder.Entity("igreja.Domain.Models.Attachment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Changed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("Data")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UploadedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Attachments");
+                });
+
             modelBuilder.Entity("igreja.Domain.Models.Church", b =>
                 {
                     b.Property<Guid>("Id")
@@ -70,7 +99,6 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Changed")
@@ -83,7 +111,6 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -104,7 +131,6 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ContributionType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Created")
@@ -114,7 +140,6 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("MemberId")
@@ -124,7 +149,6 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("MovementType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("TempleId")
@@ -154,7 +178,6 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CPF")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Changed")
@@ -170,11 +193,9 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("MemberFunction")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -190,27 +211,40 @@ namespace igreja.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Categoria")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Changed")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("CompletionDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeadlineInDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
+                    b.Property<Guid>("ResponsableId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.PrimitiveCollection<string>("Tags")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("UserId")
@@ -233,7 +267,6 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Adress")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Changed")
@@ -249,7 +282,6 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -257,6 +289,32 @@ namespace igreja.Infrastructure.Migrations
                     b.HasIndex("ChurchId");
 
                     b.ToTable("Temples");
+                });
+
+            modelBuilder.Entity("igreja.Domain.Models.Tenant", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Changed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tenants");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.User", b =>
@@ -275,28 +333,32 @@ namespace igreja.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsResponsableMyTask")
                         .HasColumnType("bit");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tenant")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
 
                     b.ToTable("Users");
                 });
@@ -357,6 +419,15 @@ namespace igreja.Infrastructure.Migrations
                     b.Navigation("Church");
                 });
 
+            modelBuilder.Entity("igreja.Domain.Models.User", b =>
+                {
+                    b.HasOne("igreja.Domain.Models.Tenant", null)
+                        .WithMany("Users")
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("igreja.Domain.Models.AccountApplication", b =>
                 {
                     b.Navigation("FinancialMovements");
@@ -377,6 +448,11 @@ namespace igreja.Infrastructure.Migrations
             modelBuilder.Entity("igreja.Domain.Models.Temple", b =>
                 {
                     b.Navigation("FinancialMovements");
+                });
+
+            modelBuilder.Entity("igreja.Domain.Models.Tenant", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

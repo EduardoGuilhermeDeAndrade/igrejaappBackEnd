@@ -26,7 +26,6 @@ namespace igreja.CrossCutting.IoC.DependencyInjection
             // Configuração do IHttpContextAccessor
             services.AddHttpContextAccessor();
 
-            // Repositórios
             // Repositorios
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserRepository, UserRepository>();
@@ -37,7 +36,7 @@ namespace igreja.CrossCutting.IoC.DependencyInjection
             services.AddScoped<IMemberRepository, MemberRepository>();
             services.AddScoped<ITempleRepository, TempleRepository>();
             services.AddScoped<IAttachmentRepository, AttachmentRepository>();
-
+            services.AddScoped<ITenantRepository, TenantRepository>();
 
             // Serviços
             services.AddScoped<IAuthService, AuthService>();
@@ -45,6 +44,7 @@ namespace igreja.CrossCutting.IoC.DependencyInjection
             services.AddScoped<IChurchService, ChurchService>();
             services.AddScoped<ITempleService, TempleService>();
             services.AddScoped<IMemberService, MemberService>();
+            services.AddScoped<ITenantService, TenantService>();
 
             //Serviços da infraestrutura
             services.AddScoped<IAttachmentService, AttachmentService>();

@@ -97,7 +97,7 @@ namespace igreja.Application.Services
             {
                 var myTask = _mapper.Map<MyTask>(myTaskAddDto);
 
-                var UserResponsableId = await _userRepository.GetByIdIgnoreQueryFilterAsync(myTaskAddDto.UserResponsableId);
+                var UserResponsableId = await _userRepository.GetUserByIdIgnoreQueryFilterAsync(myTaskAddDto.UserResponsableId);
                 
                 if (UserResponsableId == null)
                     return new ApiResponse<bool>("Usuário responsável não localizado.", false);
@@ -121,7 +121,7 @@ namespace igreja.Application.Services
             if (myTaskEntity == null)
                 return new ApiResponse<bool>("A tarefa solicitada não foi encontrada.", false);
 
-            var UserResponsableId = await _userRepository.GetByIdIgnoreQueryFilterAsync(myTaskDto.UserResponsableId);
+            var UserResponsableId = await _userRepository.GetUserByIdIgnoreQueryFilterAsync(myTaskDto.UserResponsableId);
             if (UserResponsableId == null)
                 return new ApiResponse<bool>("Usuário responsável não localizado.", false);
 
