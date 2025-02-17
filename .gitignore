@@ -490,9 +490,8 @@ $RECYCLE.BIN/
 bin/
 obj/
 
-# Ignorar pastas de compilação
-bin/
-obj/
+# Ignorar pastas obj
+**/obj/
 
 # Ignorar arquivos de depuração e símbolos
 *.pdb
@@ -510,3 +509,4 @@ project.nuget.cache
 
 # Ignorar pasta .vs (gerada pelo Visual Studio)
 .vs/
+
