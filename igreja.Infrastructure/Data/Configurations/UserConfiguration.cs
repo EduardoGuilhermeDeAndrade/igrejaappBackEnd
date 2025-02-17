@@ -27,6 +27,11 @@ namespace igreja.Infrastructure.Data.Configurations
             builder.Property(u => u.IsResponsableMyTask)
                    .IsRequired(); // Campo obrigatório
 
+            builder.Property(u => u.TenantId)
+                .IsRequired(); // Chave estrangeira
+
+
+
             // Configuração de propriedades herdadas
             builder.Property(u => u.UserId)
                    .IsRequired();

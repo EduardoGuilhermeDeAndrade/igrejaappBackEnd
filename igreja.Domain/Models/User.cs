@@ -9,6 +9,9 @@ namespace igreja.Domain.Models
         public string PasswordHash { get; set; }
         public string Role { get; set; }
         public bool IsResponsableMyTask { get; set; } = false;
+
+        public Guid TenantId { get; set; } // Chave estrangeira
+        public string Tenant { get; set; }// Propriedade de navegação
     }
 }
 

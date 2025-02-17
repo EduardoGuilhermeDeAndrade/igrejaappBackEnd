@@ -1,6 +1,7 @@
 ﻿using igreja.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 
 namespace igreja.Infrastructure.Data.Configurations
 {
@@ -20,6 +21,10 @@ namespace igreja.Infrastructure.Data.Configurations
             builder.Property(mv => mv.Description)
                    .HasMaxLength(500);
 
+            builder.Property(mv => mv.Value)
+                    .IsRequired()
+                     .HasColumnType("decimal(18,2)"); // Precisão 18, escala 2;
+
             builder.HasOne(mv => mv.Temple)
                    .WithMany(t => t.FinancialMovements)
                    .HasForeignKey(mv => mv.TempleId);
@@ -31,6 +36,8 @@ namespace igreja.Infrastructure.Data.Configurations
             builder.HasOne(mv => mv.AccountApplications)
                    .WithMany()
                    .HasForeignKey(mv => mv.AccountApplicationId);
+
+
         }
     }
 }
