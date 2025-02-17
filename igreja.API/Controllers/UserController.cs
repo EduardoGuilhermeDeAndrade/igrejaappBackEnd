@@ -4,6 +4,7 @@ using igreja.Domain.Models;
 using Igreja.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -19,10 +20,17 @@ public class UserController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetUsersResponsableTask()
+
+    /// <summary>
+    /// Obtém a lista de todos os usuários cadastrados.
+    /// </summary>
+    /// <returns>Uma lista de usuários</returns>
+    [HttpGet("getAll")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetAllUsers()
     {
-        var users = await _userRepository.GetUsersResponsableTaskAsync();
+        var users = await _userRepository.GetAllAsync(); //Criar novo com ignore query filter
         if (users.Count() == 0)
             return NotFound();
 
@@ -31,22 +39,46 @@ public class UserController : ControllerBase
         return Ok(usersDto);
     }
 
+    //[HttpGet("getByTenant")]
+    //public async Task<IActionResult> GetAllUsersByTenant()
+    //{
+    //    var users = await _userRepository.GetUsersResponsableTaskAsync();
+    //    if (users.Count() == 0)
+    //        return NotFound();
 
-    [HttpPost("responsible-user-mark-toggle")]
-    public async Task<IActionResult> PostResponsibleUserMark(Guid userId)
-    {
-        var user = await _userRepository.GetByIdIgnoreQueryFilterAsync(userId);
+    //    var usersDto = _mapper.Map<IEnumerable<UserDto>>(users);
 
-        if (user == null)
-            return BadRequest("Este usuário não existe.");
+    //    return Ok(usersDto);
+    //}
 
-        if (string.IsNullOrEmpty(user.Email))
-            return BadRequest("Este usuário não possui e-mail cadastrado.");
+    //[HttpGet("getIsResponsableTask")]
+    //public async Task<IActionResult> GetUsersResponsableTask()
+    //{
+    //    var users = await _userRepository.GetUsersResponsableTaskAsync();
+    //    if (users.Count() == 0)
+    //        return NotFound();
 
-        user.IsResponsableMyTask = !user.IsResponsableMyTask;
-        await _userRepository.UpdateAsync(user);
+    //    var usersDto = _mapper.Map<IEnumerable<UserDto>>(users);
 
-        return Ok();
-    }
+    //    return Ok(usersDto);
+    //}
+
+
+    //[HttpPost("responsible-user-mark-toggle")]
+    //public async Task<IActionResult> PostResponsibleUserMark(Guid userId)
+    //{
+    //    var user = await _userRepository.GetUserByIdIgnoreQueryFilterAsync(userId);
+
+    //    if (user == null)
+    //        return BadRequest("Este usuário não existe.");
+
+    //    if (string.IsNullOrEmpty(user.Email))
+    //        return BadRequest("Este usuário não possui e-mail cadastrado.");
+
+    //    user.IsResponsableMyTask = !user.IsResponsableMyTask;
+    //    await _userRepository.UpdateAsync(user);
+
+    //    return Ok();
+    //}
 
 }

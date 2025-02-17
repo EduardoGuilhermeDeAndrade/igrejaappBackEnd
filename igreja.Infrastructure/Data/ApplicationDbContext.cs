@@ -23,6 +23,7 @@ namespace igreja.Infrastructure.Data
         public DbSet<Temple> Temples { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Church> Churchs { get; set; }
+        public DbSet<Tenant> Tenants { get; set; }
         public DbSet<FinancialMovement> FinancialMovements { get; set; }
         public DbSet<AccountApplication> AccountApplications { get; set; }
 
@@ -142,14 +143,17 @@ namespace igreja.Infrastructure.Data
         {
             var userId = _userContextProvider.GetCurrentUserId();
 
-            //if (userId == Guid.Empty)
-                //throw new UnauthorizedAccessException("Usuário não autenticado.");
+            if (userId == Guid.Empty)
+                return;
 
             foreach (var entry in ChangeTracker.Entries())
             {
                 if (entry.Entity is EntityUser entityUser && entry.State == EntityState.Added)
                 {
-                    entityUser.UserId = userId;
+                    if (entityUser.UserId == Guid.Empty) // Só define se estiver vazio
+                    {
+                        entityUser.UserId = userId;
+                    }
                 }
             }
         }

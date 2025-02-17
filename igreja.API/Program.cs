@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using System.Reflection; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,7 +64,11 @@ builder.Services.AddValidatorsFromAssemblyContaining<MyTaskValidator>();
 // Configurações do Swagger
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Igreja API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { 
+        Title = "Igreja API", 
+        Version = "v1" 
+    });
+
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -72,6 +78,7 @@ builder.Services.AddSwaggerGen(c =>
         In = ParameterLocation.Header,
         Description = "Insira o token JWT no campo."
     });
+
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -82,6 +89,14 @@ builder.Services.AddSwaggerGen(c =>
             new string[] {}
         }
     });
+
+    // Adiciona suporte à documentação XML
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+
+    // Adiciona suporte às anotações do Swashbuckle
+    c.EnableAnnotations();
 });
 
 builder.Services.AddControllers();
@@ -98,11 +113,12 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 
     // Inicializa os dados
-    SeedData.Initialize(context);
+    //SeedData.Initialize(context);
 }
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();//Exibe as mensagens de erro detalhadas e mensagens
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
