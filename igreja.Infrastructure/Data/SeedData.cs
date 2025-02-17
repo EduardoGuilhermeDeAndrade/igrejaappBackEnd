@@ -6,21 +6,25 @@ namespace igreja.Infrastructure.Data
     {
         public static void Initialize(ApplicationDbContext context)
         {
-            if (!context.Users.Any())
+            if (!context.Tenants.Any())
             {
-
-
                 context.Tenants.AddRange(
-                    new Tenant {
+                    new Tenant
+                    {
                         Id = Guid.Parse("A1B2C3D4-E5F6-7890-1234-56789ABCDE01"),
                         Name = "Tenant 1",
-                        Description = "Primeiro tenant" },
-                    new Tenant {
+                        Description = "Primeiro tenant"
+                    },
+                    new Tenant
+                    {
                         Id = Guid.Parse("B2C3D4E5-F678-9012-3456-789ABCDE0123"),
                         Name = "Tenant 2",
-                        Description = "Segundo tenant" }
+                        Description = "Segundo tenant"
+                    }
                     );
 
+                if (!context.Users.Any())
+                {
                     context.Users.AddRange(
                     new User
                     {
@@ -71,8 +75,11 @@ namespace igreja.Infrastructure.Data
                         UserId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9")
                     }
                 );
+                }
 
-            context.MyTasks.AddRange(
+                if (!context.MyTasks.Any())
+                {
+                    context.MyTasks.AddRange(
                     new MyTask
                     {
                         Id = Guid.NewGuid(),
@@ -81,7 +88,7 @@ namespace igreja.Infrastructure.Data
                         Created = DateTime.UtcNow,
                         CompletionDate = DateTime.UtcNow.AddDays(3),
                         UserResponsableId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9"),
-                        UserId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9")                        
+                        UserId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9")
                     },
                     new MyTask
                     {
@@ -124,6 +131,7 @@ namespace igreja.Infrastructure.Data
                         UserId = Guid.Parse("E5A1BB90-8DAB-45D2-B000-6E732254D492")
                     }
                 );
+                }
             }
 
             context.SaveChanges();
