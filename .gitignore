@@ -493,6 +493,10 @@ obj/
 # Ignorar pastas obj
 **/obj/
 
+
+# Ignorar pastas Debug
+**/Debug/
+
 # Ignorar arquivos de depuração e símbolos
 *.pdb
 *.dll
