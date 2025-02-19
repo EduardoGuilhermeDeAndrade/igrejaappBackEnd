@@ -19,12 +19,11 @@ namespace igreja.Infrastructure.Data
         
         public DbSet<User> Users { get; set; }
         public DbSet<MyTask> MyTasks { get; set; }
-        public DbSet<Temple> Temples { get; set; }
+
         public DbSet<Member> Members { get; set; }
-        public DbSet<Church> Churchs { get; set; }
-        public DbSet<Tenant> Tenants { get; set; }
-        public DbSet<FinancialMovement> FinancialMovements { get; set; }
-        public DbSet<AccountApplication> AccountApplications { get; set; }
+
+        public DbSet<IgrejaTenant> Tenants { get; set; }
+
 
         public DbSet<Attachment> Attachments { get; set; }
 
@@ -39,14 +38,14 @@ namespace igreja.Infrastructure.Data
         {
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
-                if (typeof(EntityUser).IsAssignableFrom(entityType.ClrType))
+                if (typeof(EntityTenantUser).IsAssignableFrom(entityType.ClrType))
                 {
                     var parameter = Expression.Parameter(entityType.ClrType, "e");
 
                     // Propriedades da entidade
-                    var isDeletedProperty = Expression.Property(parameter, nameof(EntityUser.Deleted));
-                    var tenantIdProperty = Expression.Property(parameter, nameof(EntityUser.TenantId));
-                    var userIdProperty = Expression.Property(parameter, nameof(EntityUser.UserId));
+                    var isDeletedProperty = Expression.Property(parameter, nameof(EntityTenantUser.Deleted));
+                    var tenantIdProperty = Expression.Property(parameter, nameof(EntityTenantUser.TenantId));
+                    var userIdProperty = Expression.Property(parameter, nameof(EntityTenantUser.UserId));
 
                     // Métodos auxiliares para obter os valores dinamicamente
                     var tenantIdMethod = typeof(ApplicationDbContext).GetMethod(nameof(GetTenantId), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -76,7 +75,7 @@ namespace igreja.Infrastructure.Data
 
         private Expression GetDynamicTenantIdCondition(ParameterExpression parameter)
         {
-            var tenantIdProperty = Expression.Property(parameter, nameof(EntityUser.TenantId));
+            var tenantIdProperty = Expression.Property(parameter, nameof(EntityTenantUser.TenantId));
             var tenantIdMethod = typeof(IUserContextProvider).GetMethod(nameof(IUserContextProvider.GetCurrentTenantId));
 
             // Chama _userContextProvider.GetCurrentTenantId() dinamicamente
@@ -90,7 +89,7 @@ namespace igreja.Infrastructure.Data
         //Isso evita que o valor de UserId seja fixado no momento da configuração do filtro.
         private Expression GetDynamicUserIdCondition(ParameterExpression parameter)
         {
-            var userIdProperty = Expression.Property(parameter, nameof(EntityUser.UserId));
+            var userIdProperty = Expression.Property(parameter, nameof(EntityTenantUser.UserId));
             var userIdMethod = typeof(IUserContextProvider).GetMethod(nameof(IUserContextProvider.GetCurrentUserId));
 
             // Cria uma chamada para _userContextProvider.GetCurrentUserId()
@@ -123,7 +122,7 @@ namespace igreja.Infrastructure.Data
 
             foreach (var entry in ChangeTracker.Entries())
             {
-                if (entry.Entity is EntityUser entityUser && entry.State == EntityState.Added)
+                if (entry.Entity is EntityTenantUser entityUser && entry.State == EntityState.Added)
                 {
                     if (entityUser.UserId == Guid.Empty) // Só define se estiver vazio
                     {
@@ -142,7 +141,7 @@ namespace igreja.Infrastructure.Data
 
             foreach (var entry in ChangeTracker.Entries())
             {
-                if (entry.Entity is EntityUser entityTenant && entry.State == EntityState.Added)
+                if (entry.Entity is EntityTenantUser entityTenant && entry.State == EntityState.Added)
                 {
                     if (entityTenant.TenantId == Guid.Empty) // Define apenas se estiver vazio
                     {

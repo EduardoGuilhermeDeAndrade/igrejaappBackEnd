@@ -2,7 +2,7 @@
 
 namespace igreja.Application.DTOs.Tenant
 {
-    public class TenantAddDto
+    public class IgrejaTenantAddDto
     {
         [Required]
         public string Name { get; set; }

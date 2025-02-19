@@ -2,7 +2,7 @@
 
 namespace igreja.Domain.Models
 {
-    public class User: EntityUser
+    public class User: EntityTenantUser
     {
         public string Username { get; set; }
         public string Email { get; set; }

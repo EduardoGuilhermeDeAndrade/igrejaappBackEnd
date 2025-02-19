@@ -31,21 +31,18 @@ namespace igreja.CrossCutting.IoC.DependencyInjection
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMyTaskRepository, MyTaskRepository>();
-            services.AddScoped<IAccountApplicationRepository, AccountApplicationRepository>();
-            services.AddScoped<IChurchRepository, ChurchRepository>();
-            services.AddScoped<IFinancialMovementRepository, FinancialMovementRepository>();
+           
             services.AddScoped<IMemberRepository, MemberRepository>();
-            services.AddScoped<ITempleRepository, TempleRepository>();
+            
             services.AddScoped<IAttachmentRepository, AttachmentRepository>();
-            services.AddScoped<ITenantRepository, TenantRepository>();
+            services.AddScoped<IIgrejaTenantRepository, IgrejaTenantRepository>();
 
             // Serviços
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IMyTaskService, MyTaskService>();
-            services.AddScoped<IChurchService, ChurchService>();
-            services.AddScoped<ITempleService, TempleService>();
+
             services.AddScoped<IMemberService, MemberService>();
-            services.AddScoped<ITenantService, TenantService>();
+            services.AddScoped<IIgrejaTenantService, IgrejaTenantService>();
 
             //Serviços da infraestrutura
             services.AddScoped<IAttachmentService, AttachmentService>();

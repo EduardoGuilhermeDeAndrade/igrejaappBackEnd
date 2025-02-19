@@ -9,13 +9,13 @@ namespace igreja.Infrastructure.Data
             if (!context.Tenants.Any())
             {
                 context.Tenants.AddRange(
-                    new Tenant
+                    new IgrejaTenant
                     {
                         Id = Guid.Parse("A1B2C3D4-E5F6-7890-1234-56789ABCDE01"),
                         Name = "Tenant 1",
                         Description = "Primeiro tenant"
                     },
-                    new Tenant
+                    new IgrejaTenant
                     {
                         Id = Guid.Parse("B2C3D4E5-F678-9012-3456-789ABCDE0123"),
                         Name = "Tenant 2",

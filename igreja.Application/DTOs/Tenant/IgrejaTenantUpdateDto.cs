@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace igreja.Application.DTOs.Temple
+namespace igreja.Application.DTOs.Tenant
 {
-    public class TempleUpdateDto
+    public class IgrejaTenantUpdateDto
     {
         [Required]
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Adress { get; set; }
     }
 }

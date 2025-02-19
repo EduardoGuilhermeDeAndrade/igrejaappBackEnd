@@ -2,7 +2,7 @@
 
 namespace igreja.Domain.Models
 {
-    public class Tenant : Entity
+    public class IgrejaTenant : EntityFull
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
