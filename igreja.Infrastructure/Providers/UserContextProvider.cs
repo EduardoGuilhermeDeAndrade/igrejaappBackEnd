@@ -1,6 +1,5 @@
 ﻿using igreja.Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
 
 namespace igreja.Infrastructure.Providers
 {
@@ -13,18 +12,17 @@ namespace igreja.Infrastructure.Providers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        //Ativar validação de usuário logado
-        public Guid GetCurrentUserId()
+        public Guid GetCurrentTenantId()
         {
-            var userIdClaim = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            return string.IsNullOrEmpty(userIdClaim) ? Guid.Empty : Guid.Parse(userIdClaim);
+            var tenantIdClaim = _httpContextAccessor.HttpContext?.User?.FindFirst("tenantId")?.Value;
+            return string.IsNullOrEmpty(tenantIdClaim) ? Guid.Empty : Guid.Parse(tenantIdClaim);
         }
 
-        ////Travado para testes
-        //public Guid GetCurrentUserId()
-        //{
-        //    // GUID fixo para testes ou ambiente de desenvolvimento
-        //    return Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9");
-        //}
+        public Guid GetCurrentUserId()
+        {
+            var userIdClaim = _httpContextAccessor.HttpContext?.User?.FindFirst("userId")?.Value;
+            return string.IsNullOrEmpty(userIdClaim) ? Guid.Empty : Guid.Parse(userIdClaim);
+        }
     }
 }
+

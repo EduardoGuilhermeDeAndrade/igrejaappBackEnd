@@ -20,6 +20,7 @@ namespace igreja.CrossCutting.IoC.DependencyInjection
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             // Configuração do DbContext
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 

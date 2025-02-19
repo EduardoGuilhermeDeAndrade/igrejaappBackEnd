@@ -23,7 +23,7 @@ namespace Igreja.Infrastructure.Repositories
 
             return await _context.Users
                 .IgnoreQueryFilters()
-                .FirstOrDefaultAsync(u => u.Username.ToLower().Contains(username.ToLower()) && u.Deleted == false);
+                .FirstOrDefaultAsync(u => u.Username.ToLower() == username.ToLower() && u.Deleted == false);
 
         }
 

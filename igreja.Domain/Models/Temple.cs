@@ -2,7 +2,7 @@
 
 namespace igreja.Domain.Models
 {
-    public class Temple : Entity
+    public class Temple : EntityUser
     {
         public string Name { get; set; } = string.Empty;
         public string Adress { get; set; } = string.Empty;

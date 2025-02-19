@@ -11,7 +11,8 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
-using System.Reflection; 
+using System.Reflection;
+using igreja.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +42,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             OnTokenValidated = context =>
             {
                 Console.WriteLine("Token validated");
-                Console.WriteLine($"User ID from token: {context.Principal?.FindFirst(ClaimTypes.NameIdentifier)?.Value}");
+                Console.WriteLine($"User ID from token: {context.Principal?.FindFirst(ClaimTypes.Name)?.Value}");
+                Console.WriteLine($"User ID from token: {context.Principal?.FindFirst("userId")?.Value}");
+                Console.WriteLine($"Tenant ID from token: {context.Principal?.FindFirst("tenantId")?.Value}");
+
+
                 return Task.CompletedTask;
             }
         };
@@ -64,9 +69,10 @@ builder.Services.AddValidatorsFromAssemblyContaining<MyTaskValidator>();
 // Configurações do Swagger
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { 
-        Title = "Igreja API", 
-        Version = "v1" 
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Igreja API",
+        Version = "v1"
     });
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -110,11 +116,12 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<ApplicationDbContext>();
 
     // Executa as migrações
+
     context.Database.Migrate();
 
     // Inicializa os dados
 
-   SeedData.Initialize(context);
+    SeedData.Initialize(context);
 }
 
 if (app.Environment.IsDevelopment())
