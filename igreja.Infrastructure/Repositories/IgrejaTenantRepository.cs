@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace igreja.Infrastructure.Repositories
 {
-    public class TenantRepository : Repository<Tenant>, ITenantRepository
+    public class IgrejaTenantRepository : Repository<IgrejaTenant>, IIgrejaTenantRepository
     {
         private readonly ApplicationDbContext _context;
-        public TenantRepository(ApplicationDbContext context) : base(context) {
+        public IgrejaTenantRepository(ApplicationDbContext context) : base(context) {
             _context = context;
         }
 

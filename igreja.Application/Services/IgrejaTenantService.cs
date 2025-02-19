@@ -6,44 +6,44 @@ using igreja.Domain.Interfaces.Repository;
 using igreja.Domain.Models;
 namespace igreja.Application.Services
 {
-    public class TenantService : ITenantService
+    public class IgrejaTenantService : IIgrejaTenantService
     {
-        private readonly ITenantRepository _tenantRepository;
+        private readonly IIgrejaTenantRepository _tenantRepository;
         private readonly IMapper _mapper;
 
-        public TenantService(ITenantRepository tenantRepository, IMapper mapper)
+        public IgrejaTenantService(IIgrejaTenantRepository tenantRepository, IMapper mapper)
         {
             _tenantRepository = tenantRepository;
             _mapper = mapper;
         }
 
-        public async Task<ApiResponse<IEnumerable<TenantDto>>> GetAllTenantsAsync()
+        public async Task<ApiResponse<IEnumerable<IgrejaTenantDto>>> GetAllTenantsAsync()
         {
             var tenants = await _tenantRepository.GetAllAsync();
-            var tenantsDto = _mapper.Map<IEnumerable<TenantDto>>(tenants);
+            var tenantsDto = _mapper.Map<IEnumerable<IgrejaTenantDto>>(tenants);
 
-            return new ApiResponse<IEnumerable<TenantDto>>(tenantsDto);
+            return new ApiResponse<IEnumerable<IgrejaTenantDto>>(tenantsDto);
         }
 
-        public async Task<ApiResponse<TenantDto?>> GetTenatByIdAsync(Guid id)
+        public async Task<ApiResponse<IgrejaTenantDto?>> GetTenatByIdAsync(Guid id)
         {
             var tenant = await _tenantRepository.GetByIdAsync(id);
             if (tenant == null)
-                return new ApiResponse<TenantDto?>("O Cliente não foi encontrado.", false);
+                return new ApiResponse<IgrejaTenantDto?>("O Cliente não foi encontrado.", false);
 
-            var tenantResult = _mapper.Map<TenantDto>(tenant);
+            var tenantResult = _mapper.Map<IgrejaTenantDto>(tenant);
 
-            return new ApiResponse<TenantDto?>(tenantResult);
+            return new ApiResponse<IgrejaTenantDto?>(tenantResult);
         }
 
-        public async Task<ApiResponse<bool>> AddTenatAsync(TenantAddDto tenantAddDto)
+        public async Task<ApiResponse<bool>> AddTenatAsync(IgrejaTenantAddDto tenantAddDto)
         {
             if (string.IsNullOrEmpty(tenantAddDto.Name))
                 return new ApiResponse<bool>("O nome do Cliente é obrigatório.", false);
 
             try
             {
-                var tenantAdd = _mapper.Map<Tenant>(tenantAddDto);
+                var tenantAdd = _mapper.Map<IgrejaTenant>(tenantAddDto);
 
                 tenantAdd.Deleted = false;
                 await _tenantRepository.AddAsync(tenantAdd);
@@ -56,13 +56,13 @@ namespace igreja.Application.Services
             }
         }
 
-        public async Task<ApiResponse<bool>> UpdateTenantAsync(Guid id, TenantUpdateDto tenantUpdateDto)
+        public async Task<ApiResponse<bool>> UpdateTenantAsync(Guid id, IgrejaTenantUpdateDto tenantUpdateDto)
         {
             var tenantEntity = await _tenantRepository.GetByIdAsync(tenantUpdateDto.Id);
             if (tenantEntity == null)
                 return new ApiResponse<bool>("O Cliente solicitado não foi encontrado.", false);
 
-            var tenantEntityAdd = _mapper.Map<Tenant>(tenantUpdateDto);
+            var tenantEntityAdd = _mapper.Map<IgrejaTenant>(tenantUpdateDto);
 
             tenantEntityAdd.Changed = DateTime.Now;
 

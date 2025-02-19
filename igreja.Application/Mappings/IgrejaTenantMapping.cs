@@ -4,17 +4,17 @@ using igreja.Domain.Models;
 
 namespace igreja.Application.Mappings
 {
-    public class TenantMapping : Profile
+    public class IgrejaTenantMapping : Profile
     {
-        public TenantMapping()
+        public IgrejaTenantMapping()
         {
             // Mapeamento bidirecional entre Church e ChurchDto
-            CreateMap<Tenant, TenantDto>().ReverseMap();
-            CreateMap<Tenant, TenantAddDto>().ReverseMap();
-            CreateMap<Tenant, TenantUpdateDto>().ReverseMap();
+            CreateMap<IgrejaTenant, IgrejaTenantDto>().ReverseMap();
+            CreateMap<IgrejaTenant, IgrejaTenantAddDto>().ReverseMap();
+            CreateMap<IgrejaTenant, IgrejaTenantUpdateDto>().ReverseMap();
 
             // Ignora propriedades específicas durante a conversão de entrada
-            CreateMap<TenantDto, Tenant>()
+            CreateMap<IgrejaTenantDto, IgrejaTenant>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.Created, opt => opt.Ignore())
                 .ForMember(dest => dest.Changed, opt => opt.Ignore());

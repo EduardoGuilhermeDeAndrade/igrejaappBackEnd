@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace igreja.Infrastructure.Data.Configurations
 {
-    public class TenantConfiguration : IEntityTypeConfiguration<Tenant>
+    public class IgrejaTenantConfiguration : IEntityTypeConfiguration<IgrejaTenant>
     {
-        public void Configure(EntityTypeBuilder<Tenant> builder)
+        public void Configure(EntityTypeBuilder<IgrejaTenant> builder)
         {
             builder.HasKey(t => t.Id);
 

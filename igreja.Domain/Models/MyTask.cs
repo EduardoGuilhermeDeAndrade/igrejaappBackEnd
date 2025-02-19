@@ -3,7 +3,7 @@ using igreja.Domain.Models.General;
 
 namespace igreja.Domain.Models
 {
-    public class MyTask : EntityUser
+    public class MyTask : EntityTenantUser
     {
         public MyTask() { 
             Tags = new List<string>(); 

@@ -21,13 +21,7 @@ namespace igreja.Infrastructure.Data.Configurations
             builder.Property(m => m.MemberFunction)
                    .HasMaxLength(100);
 
-            builder.HasOne(m => m.Church)
-                   .WithMany(i => i.Members)
-                   .HasForeignKey(m => m.ChurchId);
-
-            builder.HasMany(m => m.FinancialMovements)
-                   .WithOne(mv => mv.Member)
-                   .HasForeignKey(mv => mv.MemberId);
+            
         }
     }
 }

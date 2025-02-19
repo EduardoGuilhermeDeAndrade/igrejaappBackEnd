@@ -1,6 +1,6 @@
 ﻿namespace igreja.Application.DTOs.Tenant
 {
-    public class TenantDto
+    public class IgrejaTenantDto
     {
         public string Name { get; set; }
     }

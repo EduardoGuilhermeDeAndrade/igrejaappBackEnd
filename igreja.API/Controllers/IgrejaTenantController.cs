@@ -8,11 +8,11 @@ namespace igreja.API.Controllers
     [ApiController]
     [Route("api/[controller]")]
     //[Authorize]
-    public class TenantController : ControllerBase
+    public class IgrejaTenantController : ControllerBase
     {
-        private readonly ITenantService _tenantService;
+        private readonly IIgrejaTenantService _tenantService;
 
-        public TenantController(ITenantService tenantService)
+        public IgrejaTenantController(IIgrejaTenantService tenantService)
         {
             _tenantService = tenantService;
         }
@@ -32,7 +32,7 @@ namespace igreja.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] TenantAddDto tenantAddDto)
+        public async Task<IActionResult> Create([FromBody] IgrejaTenantAddDto tenantAddDto)
         {
             if (tenantAddDto == null)
                 return BadRequest(new ApiResponse<string>("Dados inválidos para criação de templo.", false));
@@ -46,7 +46,7 @@ namespace igreja.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] TenantUpdateDto tenantUpdateDto)
+        public async Task<IActionResult> Update(Guid id, [FromBody] IgrejaTenantUpdateDto tenantUpdateDto)
         {
             var response = await _tenantService.UpdateTenantAsync(id, tenantUpdateDto);
             if (!response.Success)

@@ -2,7 +2,7 @@
 
 namespace igreja.Domain.Models
 {
-    public class Attachment : Entity
+    public class Attachment : EntityFull
     {
         public Guid Id { get; set; }
         public string FileName { get; set; }

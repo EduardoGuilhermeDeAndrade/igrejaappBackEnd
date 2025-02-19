@@ -1,9 +1,13 @@
 ﻿namespace igreja.Domain.Models.General
 {
 
-    public abstract class Entity
+    public abstract class EntityTenantUser
     {
-        public Guid Id { get; set; } = Guid.NewGuid(); 
+        public Guid Id { get; set; } = Guid.NewGuid();
+
+        public Guid UserId { get; set; } 
+
+        public Guid TenantId { get; set; } 
 
         public DateTime Created { get; set; } = DateTime.UtcNow; 
 
@@ -11,13 +15,5 @@
 
         public bool Deleted { get; set; } = false; 
 
-        protected Entity() { }
-
-        protected Entity(Guid id)
-        {
-            Id = id;
-        }
     }
-
-
 }
