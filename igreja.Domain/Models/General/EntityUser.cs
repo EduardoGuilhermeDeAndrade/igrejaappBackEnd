@@ -7,6 +7,8 @@
 
         public Guid UserId { get; set; } // Relacionamento com o usuário
 
+        public Guid TenantId { get; set; } // Relacionamento com o usuário
+
         public DateTime Created { get; set; } = DateTime.UtcNow; 
 
         public DateTime? Changed { get; set; } 

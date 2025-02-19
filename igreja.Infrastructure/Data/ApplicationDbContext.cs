@@ -1,9 +1,7 @@
 ﻿using igreja.Domain.Interfaces;
 using igreja.Domain.Models;
 using igreja.Domain.Models.General;
-using igreja.Infrastructure.Providers;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq.Expressions;
 
 namespace igreja.Infrastructure.Data
@@ -16,6 +14,7 @@ namespace igreja.Infrastructure.Data
             : base(options)
         {
             _userContextProvider = userContextProvider;
+            Console.WriteLine("🔄 Novo ApplicationDbContext criado!");
         }
         
         public DbSet<User> Users { get; set; }
@@ -36,81 +35,55 @@ namespace igreja.Infrastructure.Data
             ApplyGlobalFilters(modelBuilder);
         }
 
-        //private void ApplyGlobalFilters(ModelBuilder modelBuilder)
-        //{
-        //    foreach (var entityType in modelBuilder.Model.GetEntityTypes())
-        //    {
-        //        if (typeof(EntityUser).IsAssignableFrom(entityType.ClrType))
-        //        {
-        //            var parameter = Expression.Parameter(entityType.ClrType, "e");
-
-        //            // Propriedade Deleted
-        //            var isDeletedProperty = Expression.Property(parameter, nameof(EntityUser.Deleted));
-        //            var isDeletedCondition = Expression.Equal(isDeletedProperty, Expression.Constant(false));
-
-        //            // Condição UserId dinâmica
-        //            var userIdCondition = GetDynamicUserIdCondition(parameter);
-
-        //            // Combina as condições (UserId e Deleted)
-        //            var combinedCondition = Expression.AndAlso(userIdCondition, isDeletedCondition);
-
-        //            // Cria a expressão lambda
-        //            var lambda = Expression.Lambda(combinedCondition, parameter);
-
-        //            modelBuilder.Entity(entityType.ClrType).HasQueryFilter((dynamic)lambda);
-        //        }
-        //    }
-        //}
-
         private void ApplyGlobalFilters(ModelBuilder modelBuilder)
         {
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
-                var clrType = entityType.ClrType;
-
-                // Obtém a propriedade "Deleted" dinamicamente
-                var deletedProperty = clrType.GetProperty("Deleted");
-                // Obtém a propriedade "UserId" dinamicamente
-                var userIdProperty = clrType.GetProperty("UserId");
-
-                if (deletedProperty != null || userIdProperty != null)
+                if (typeof(EntityUser).IsAssignableFrom(entityType.ClrType))
                 {
-                    // Parâmetro da expressão (representa a entidade "e")
-                    var parameter = Expression.Parameter(clrType, "e");
+                    var parameter = Expression.Parameter(entityType.ClrType, "e");
 
-                    Expression combinedCondition = null;
+                    // Propriedades da entidade
+                    var isDeletedProperty = Expression.Property(parameter, nameof(EntityUser.Deleted));
+                    var tenantIdProperty = Expression.Property(parameter, nameof(EntityUser.TenantId));
+                    var userIdProperty = Expression.Property(parameter, nameof(EntityUser.UserId));
 
-                    // Condição para Deleted == false
-                    if (deletedProperty != null)
-                    {
-                        var isDeletedProperty = Expression.Property(parameter, deletedProperty);
-                        var isDeletedCondition = Expression.Equal(isDeletedProperty, Expression.Constant(false));
-                        combinedCondition = isDeletedCondition;
-                    }
+                    // Métodos auxiliares para obter os valores dinamicamente
+                    var tenantIdMethod = typeof(ApplicationDbContext).GetMethod(nameof(GetTenantId), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    var userIdMethod = typeof(ApplicationDbContext).GetMethod(nameof(GetUserId), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
 
-                    // Condição dinâmica para UserId == CurrentUserId
-                    if (userIdProperty != null)
-                    {
-                        var userIdPropertyAccess = Expression.Property(parameter, userIdProperty);
-                        var userIdCondition = Expression.Equal(userIdPropertyAccess, Expression.Constant(_userContextProvider.GetCurrentUserId()));
+                    var tenantIdValue = Expression.Call(Expression.Constant(this), tenantIdMethod);
+                    var userIdValue = Expression.Call(Expression.Constant(this), userIdMethod);
 
-                        combinedCondition = combinedCondition != null
-                            ? Expression.AndAlso(combinedCondition, userIdCondition)
-                            : userIdCondition;
-                    }
+                    // Conversão para Guid (necessária para evitar erros de tipo)
+                    var tenantIdCondition = Expression.Equal(tenantIdProperty, Expression.Convert(tenantIdValue, typeof(Guid)));
+                    var userIdCondition = Expression.Equal(userIdProperty, Expression.Convert(userIdValue, typeof(Guid)));
+                    var isDeletedCondition = Expression.Equal(isDeletedProperty, Expression.Constant(false));
 
-                    if (combinedCondition != null)
-                    {
-                        // Cria a expressão lambda
-                        var lambda = Expression.Lambda(combinedCondition, parameter);
+                    // Combina as condições
+                    var combinedCondition = Expression.AndAlso(userIdCondition, Expression.AndAlso(tenantIdCondition, isDeletedCondition));
 
-                        // Aplica o filtro global
-                        modelBuilder.Entity(clrType).HasQueryFilter((dynamic)lambda);
-                    }
+                    // Cria a expressão lambda e adiciona como filtro global
+                    var lambda = Expression.Lambda(combinedCondition, parameter);
+                    modelBuilder.Entity(entityType.ClrType).HasQueryFilter((dynamic)lambda);
                 }
             }
         }
 
+        // Métodos auxiliares para obter os valores dinamicamente
+        private Guid GetTenantId() => _userContextProvider.GetCurrentTenantId();
+        private Guid GetUserId() => _userContextProvider.GetCurrentUserId();
+
+        private Expression GetDynamicTenantIdCondition(ParameterExpression parameter)
+        {
+            var tenantIdProperty = Expression.Property(parameter, nameof(EntityUser.TenantId));
+            var tenantIdMethod = typeof(IUserContextProvider).GetMethod(nameof(IUserContextProvider.GetCurrentTenantId));
+
+            // Chama _userContextProvider.GetCurrentTenantId() dinamicamente
+            var tenantIdValue = Expression.Call(Expression.Constant(_userContextProvider), tenantIdMethod);
+
+            return Expression.Equal(tenantIdProperty, tenantIdValue);
+        }
 
         //Como Funciona
         //O método GetDynamicUserIdCondition usa reflexão para chamar _userContextProvider.GetCurrentUserId() sempre que a consulta é executada.
@@ -130,12 +103,14 @@ namespace igreja.Infrastructure.Data
         public override int SaveChanges()
         {
             SetUserIdForEntities();
+            SetTenantIdForEntities();
             return base.SaveChanges();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             SetUserIdForEntities();
+            SetTenantIdForEntities();
             return base.SaveChangesAsync(cancellationToken);
         }
 
@@ -158,5 +133,23 @@ namespace igreja.Infrastructure.Data
             }
         }
 
+        private void SetTenantIdForEntities()
+        {
+            var tenantId = _userContextProvider.GetCurrentTenantId();
+
+            if (tenantId == Guid.Empty)
+                return;
+
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                if (entry.Entity is EntityUser entityTenant && entry.State == EntityState.Added)
+                {
+                    if (entityTenant.TenantId == Guid.Empty) // Define apenas se estiver vazio
+                    {
+                        entityTenant.TenantId = tenantId;
+                    }
+                }
+            }
+        }
     }
 }

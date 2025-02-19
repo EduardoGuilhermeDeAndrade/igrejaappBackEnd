@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController : ControllerBase 
+public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
 
@@ -13,6 +13,16 @@ public class AuthController : ControllerBase
         _authService = authService;
     }
 
+    [HttpGet("test-token")]
+    public IActionResult TestToken()
+    {
+        var userId = User.FindFirst("userId")?.Value;
+        var tenantId = User.FindFirst("tenantId")?.Value;
+        return Ok(new { UserId = userId, TenantId = tenantId });
+    }
+
+
+
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginDto loginDto)
     {
@@ -20,4 +30,13 @@ public class AuthController : ControllerBase
         if (token == null) return Unauthorized();
         return Ok(new { Token = token });
     }
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+        await _authService.LogoutAsync(token);
+        return Ok(new { message = "Logout successful" });
+    }
+
 }
