@@ -18,7 +18,7 @@ namespace igreja.Infrastructure.Data
         }
         
         public DbSet<User> Users { get; set; }
-        public DbSet<MyTask> MyTasks { get; set; }
+        //public DbSet<MyTask> MyTasks { get; set; }
 
         public DbSet<Member> Members { get; set; }
 

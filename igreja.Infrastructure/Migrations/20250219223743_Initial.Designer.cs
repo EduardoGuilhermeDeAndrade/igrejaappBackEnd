@@ -12,8 +12,8 @@ using igreja.Infrastructure.Data;
 namespace igreja.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250219202728_Remove Entities")]
-    partial class RemoveEntities
+    [Migration("20250219223743_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,64 +115,6 @@ namespace igreja.Infrastructure.Migrations
                     b.ToTable("Members");
                 });
 
-            modelBuilder.Entity("igreja.Domain.Models.MyTask", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Categoria")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Changed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CompletionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DeadlineInDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Priority")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ResponsableId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.PrimitiveCollection<string>("Tags")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserResponsableId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserResponsableId");
-
-                    b.ToTable("MyTasks");
-                });
-
             modelBuilder.Entity("igreja.Domain.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -220,17 +162,6 @@ namespace igreja.Infrastructure.Migrations
                     b.HasIndex("IgrejaTenantId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("igreja.Domain.Models.MyTask", b =>
-                {
-                    b.HasOne("igreja.Domain.Models.User", "UserResponsable")
-                        .WithMany()
-                        .HasForeignKey("UserResponsableId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserResponsable");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.User", b =>

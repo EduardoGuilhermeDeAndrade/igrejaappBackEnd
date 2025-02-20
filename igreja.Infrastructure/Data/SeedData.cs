@@ -77,61 +77,61 @@ namespace igreja.Infrastructure.Data
                 );
                 }
 
-                if (!context.MyTasks.Any())
-                {
-                    context.MyTasks.AddRange(
-                    new MyTask
-                    {
-                        Id = Guid.NewGuid(),
-                        Title = "Tarefa 01",
-                        Description = "Descrição da tarefa 01",
-                        Created = DateTime.UtcNow,
-                        CompletionDate = DateTime.UtcNow.AddDays(3),
-                        UserResponsableId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9"),
-                        UserId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9")
-                    },
-                    new MyTask
-                    {
-                        Id = Guid.NewGuid(),
-                        Title = "Tarefa 02",
-                        Description = "Descrição da tarefa 02",
-                        Created = DateTime.UtcNow,
-                        CompletionDate = DateTime.UtcNow.AddDays(3),
-                        UserResponsableId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9"),
-                        UserId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE")
-                    },
-                    new MyTask
-                    {
-                        Id = Guid.NewGuid(),
-                        Title = "Tarefa 03",
-                        Description = "Descrição da tarefa 03",
-                        Created = DateTime.UtcNow,
-                        CompletionDate = DateTime.UtcNow.AddDays(3),
-                        UserResponsableId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE"),
-                        UserId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE")
-                    },
-                    new MyTask
-                    {
-                        Id = Guid.NewGuid(),
-                        Title = "Tarefa 04",
-                        Description = "Descrição da tarefa 04",
-                        Created = DateTime.UtcNow,
-                        CompletionDate = DateTime.UtcNow.AddDays(3),
-                        UserResponsableId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE"),
-                        UserId = Guid.Parse("E5A1BB90-8DAB-45D2-B000-6E732254D492")
-                    },
-                    new MyTask
-                    {
-                        Id = Guid.NewGuid(),
-                        Title = "Tarefa 05",
-                        Description = "Descrição da tarefa 05",
-                        Created = DateTime.UtcNow,
-                        CompletionDate = DateTime.UtcNow.AddDays(3),
-                        UserResponsableId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE"),
-                        UserId = Guid.Parse("E5A1BB90-8DAB-45D2-B000-6E732254D492")
-                    }
-                );
-                }
+                //if (!context.MyTasks.Any())
+                //{
+                //    context.MyTasks.AddRange(
+                //    new MyTask
+                //    {
+                //        Id = Guid.NewGuid(),
+                //        Title = "Tarefa 01",
+                //        Description = "Descrição da tarefa 01",
+                //        Created = DateTime.UtcNow,
+                //        CompletionDate = DateTime.UtcNow.AddDays(3),
+                //        UserResponsableId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9"),
+                //        UserId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9")
+                //    },
+                //    new MyTask
+                //    {
+                //        Id = Guid.NewGuid(),
+                //        Title = "Tarefa 02",
+                //        Description = "Descrição da tarefa 02",
+                //        Created = DateTime.UtcNow,
+                //        CompletionDate = DateTime.UtcNow.AddDays(3),
+                //        UserResponsableId = Guid.Parse("2B4B17FA-8C77-4DDE-B0BF-F50DE15839D9"),
+                //        UserId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE")
+                //    },
+                //    new MyTask
+                //    {
+                //        Id = Guid.NewGuid(),
+                //        Title = "Tarefa 03",
+                //        Description = "Descrição da tarefa 03",
+                //        Created = DateTime.UtcNow,
+                //        CompletionDate = DateTime.UtcNow.AddDays(3),
+                //        UserResponsableId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE"),
+                //        UserId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE")
+                //    },
+                //    new MyTask
+                //    {
+                //        Id = Guid.NewGuid(),
+                //        Title = "Tarefa 04",
+                //        Description = "Descrição da tarefa 04",
+                //        Created = DateTime.UtcNow,
+                //        CompletionDate = DateTime.UtcNow.AddDays(3),
+                //        UserResponsableId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE"),
+                //        UserId = Guid.Parse("E5A1BB90-8DAB-45D2-B000-6E732254D492")
+                //    },
+                //    new MyTask
+                //    {
+                //        Id = Guid.NewGuid(),
+                //        Title = "Tarefa 05",
+                //        Description = "Descrição da tarefa 05",
+                //        Created = DateTime.UtcNow,
+                //        CompletionDate = DateTime.UtcNow.AddDays(3),
+                //        UserResponsableId = Guid.Parse("9BBE5716-924A-47F4-9FA1-335D0B3A9BAE"),
+                //        UserId = Guid.Parse("E5A1BB90-8DAB-45D2-B000-6E732254D492")
+                //    }
+                //);
+                //}
             }
 
             context.SaveChanges();

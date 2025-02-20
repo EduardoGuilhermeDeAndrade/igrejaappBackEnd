@@ -30,7 +30,7 @@ namespace igreja.CrossCutting.IoC.DependencyInjection
             // Repositorios
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IMyTaskRepository, MyTaskRepository>();
+            //services.AddScoped<IMyTaskRepository, MyTaskRepository>();
            
             services.AddScoped<IMemberRepository, MemberRepository>();
             
@@ -39,7 +39,7 @@ namespace igreja.CrossCutting.IoC.DependencyInjection
 
             // Serviços
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IMyTaskService, MyTaskService>();
+            //services.AddScoped<IMyTaskService, MyTaskService>();
 
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IIgrejaTenantService, IgrejaTenantService>();

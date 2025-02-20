@@ -1,7 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using igreja.Application.Validations;
-using igreja.Application.Validators;
+//using igreja.Application.Validations;
+//using igreja.Application.Validators;
 using igreja.CrossCutting.IoC.DependencyInjection;
 using igreja.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -60,10 +60,10 @@ builder.Services.AddFluentValidationAutoValidation()
     .AddFluentValidationClientsideAdapters();
 
 // Validadores de DTO
-builder.Services.AddValidatorsFromAssemblyContaining<MyTaskDtoValidator>();
+//builder.Services.AddValidatorsFromAssemblyContaining<MyTaskDtoValidator>();
 
 //Validador de entidade
-builder.Services.AddValidatorsFromAssemblyContaining<MyTaskValidator>();
+//builder.Services.AddValidatorsFromAssemblyContaining<MyTaskValidator>();
 
 
 // Configurações do Swagger
