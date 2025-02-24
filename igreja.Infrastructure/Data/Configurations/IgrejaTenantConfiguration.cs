@@ -8,12 +8,21 @@ namespace igreja.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<IgrejaTenant> builder)
         {
-            builder.HasKey(t => t.Id);
+            builder.HasKey(i => i.Id);
+            builder.Property(i => i.Name).IsRequired().HasMaxLength(100);
 
-            builder.Property(t => t.Name)
-                   .IsRequired()
-                   .HasMaxLength(200);
+            // Relacionamentos
+            builder.HasMany(i => i.Users)
+                   .WithOne(u => u.IgrejaTenans)
+                   .HasForeignKey(u => u.IgrejaTenantId);
 
+            //builder.HasMany(i => i.Members)
+            //       .WithOne(m => m.IgrejaTenant)
+            //       .HasForeignKey(m => m.IgrejaTenantId);
+
+            //builder.HasMany(i => i.Temples)
+            //       .WithOne(t => t.Igreja)
+            //       .HasForeignKey(t => t.IgrejaId);
         }
     }
 }

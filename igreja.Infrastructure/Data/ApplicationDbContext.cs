@@ -2,6 +2,7 @@
 using igreja.Domain.Models;
 using igreja.Domain.Models.General;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq.Expressions;
 
 namespace igreja.Infrastructure.Data
@@ -16,15 +17,15 @@ namespace igreja.Infrastructure.Data
             _userContextProvider = userContextProvider;
             Console.WriteLine("🔄 Novo ApplicationDbContext criado!");
         }
-        
+
+        public DbSet<IgrejaTenant> IgrejaTenants { get; set; }
+        public DbSet<Temple> Temples { get; set; }
         public DbSet<User> Users { get; set; }
-        //public DbSet<MyTask> MyTasks { get; set; }
-
+        ////public DbSet<MyTask> MyTasks { get; set; }
         public DbSet<Member> Members { get; set; }
-
-        public DbSet<IgrejaTenant> Tenants { get; set; }
-
-
+        public DbSet<Responsibility> Responsibilities { get; set; } //Responsabilidades
+        public DbSet<Assignment> Assignments { get; set; } //Atribuições
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

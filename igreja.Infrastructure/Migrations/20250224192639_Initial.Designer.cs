@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using igreja.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using igreja.Infrastructure.Data;
 namespace igreja.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250224192639_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +60,7 @@ namespace igreja.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses", (string)null);
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.Assignment", b =>
@@ -91,7 +94,7 @@ namespace igreja.Infrastructure.Migrations
 
                     b.HasIndex("ResponsibilityId");
 
-                    b.ToTable("Assignments", (string)null);
+                    b.ToTable("Assignments");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.Attachment", b =>
@@ -123,7 +126,7 @@ namespace igreja.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Attachments", (string)null);
+                    b.ToTable("Attachments");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.IgrejaTenant", b =>
@@ -149,7 +152,7 @@ namespace igreja.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("IgrejaTenants", (string)null);
+                    b.ToTable("IgrejaTenants");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.Member", b =>
@@ -214,7 +217,7 @@ namespace igreja.Infrastructure.Migrations
 
                     b.HasIndex("ResponsibilityId");
 
-                    b.ToTable("Members", (string)null);
+                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.Responsibility", b =>
@@ -243,7 +246,7 @@ namespace igreja.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Responsibilities", (string)null);
+                    b.ToTable("Responsibilities");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.Temple", b =>
@@ -294,7 +297,7 @@ namespace igreja.Infrastructure.Migrations
 
                     b.HasIndex("IgrejaTenantId");
 
-                    b.ToTable("Temples", (string)null);
+                    b.ToTable("Temples");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.User", b =>
@@ -350,7 +353,7 @@ namespace igreja.Infrastructure.Migrations
 
                     b.HasIndex("IgrejaTenantId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("igreja.Domain.Models.Assignment", b =>

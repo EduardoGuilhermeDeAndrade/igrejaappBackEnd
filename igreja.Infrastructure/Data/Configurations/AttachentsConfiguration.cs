@@ -8,22 +8,13 @@ namespace igreja.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Attachment> builder)
         {
-            // Configura a chave primária
             builder.HasKey(j => j.Id);
+            builder.Property(a => a.FileName).IsRequired().HasMaxLength(255);
+            builder.Property(a => a.ContentType).IsRequired().HasMaxLength(100);
+            builder.Property(a => a.Data).IsRequired();
+            builder.Property(a => a.UploadedAt).IsRequired();
 
-            // Propriedades obrigatórias
-            builder.Property(a => a.FileName)
-                .IsRequired().HasMaxLength(255);
 
-            builder.Property(a => a.ContentType)
-                .IsRequired().HasMaxLength(100);
-
-            builder.Property(a => a.Data)
-                .IsRequired();
-
-            builder.Property(a => a.UploadedAt)
-                .IsRequired();
         }
     }
-
 }
