@@ -44,7 +44,7 @@ namespace Igreja.Application.Services
         {
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.Role, user.Role),
                 new Claim("tenantId", user.TenantId.ToString()),
                 new Claim("userId", user.Id.ToString())

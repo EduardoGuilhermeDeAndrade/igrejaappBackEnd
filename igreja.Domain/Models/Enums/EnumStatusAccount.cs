@@ -1,6 +1,6 @@
 ﻿namespace igreja.Domain.Models.Enums
 {
-    public enum StatusAccount
+    public enum EnumStatusAccount
     {
         Previsto,
         Realizado

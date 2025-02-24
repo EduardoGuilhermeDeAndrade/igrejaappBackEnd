@@ -9,6 +9,10 @@ namespace igreja.Domain.Models
         public string ContentType { get; set; }
         public byte[] Data { get; set; }
         public DateTime UploadedAt { get; set; }
-    }
 
+        // Relacionamentos opcionais
+        public Member? Member { get; set; }
+        public Temple? Temple { get; set; }
+        public User? User { get; set; }
+    }
 }

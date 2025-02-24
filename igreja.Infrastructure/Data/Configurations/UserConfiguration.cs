@@ -1,6 +1,8 @@
 ﻿using igreja.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Net.Mail;
+using System.Reflection.Emit;
 
 namespace igreja.Infrastructure.Data.Configurations
 {
@@ -8,46 +10,44 @@ namespace igreja.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            // Configuração da chave primária
             builder.HasKey(u => u.Id);
 
-            // Configurações de propriedades
-            builder.Property(u => u.Username)
+            builder.Property(u => u.UserName)
                    .IsRequired()
-                   .HasMaxLength(100); // Define um limite de caracteres para Username
-
+                   .HasMaxLength(100);
+            builder.Property(u => u.Email)
+                   .IsRequired()
+                   .HasMaxLength(100);
             builder.Property(u => u.PasswordHash)
                    .IsRequired()
-                   .HasMaxLength(200); // Define um limite de caracteres para o hash da senha
-
+                   .HasMaxLength(100);
+            builder.Property(u => u.NivelAcesso)
+                   .IsRequired();
             builder.Property(u => u.Role)
                    .IsRequired()
-                   .HasMaxLength(50); // Limite para o papel do usuário (Admin, User, etc.)
+                   .HasMaxLength(50);
+            builder.Property(u => u.IgrejaTenantId)
+                   .IsRequired();
 
-            builder.Property(u => u.IsResponsableMyTask)
-                   .IsRequired(); // Campo obrigatório
-
-            builder.Property(u => u.TenantId)
-                .IsRequired(); // Chave estrangeira
-
-
-
-            // Configuração de propriedades herdadas
+            // Propriedades herdadas
             builder.Property(u => u.UserId)
                    .IsRequired();
-
             builder.Property(u => u.Created)
                    .IsRequired();
-
             builder.Property(u => u.Deleted)
-                   .HasDefaultValue(false); // Define o valor padrão como falso
-
-            // Relacionamento de navegação inverso (se necessário)
-            // Relacionamentos podem ser configurados aqui caso o User tenha coleções relacionadas
+                   .HasDefaultValue(false);
 
             // Índices
-            builder.HasIndex(u => u.Username)
-                   .IsUnique(); // Username deve ser único
+            builder.HasIndex(u => u.UserName)
+                   .IsUnique();
+            builder.HasIndex(u => u.Email)
+                   .IsUnique();
+
+            // Relacionamento com Attachment
+            builder.HasOne(u => u.Attachment)
+                   .WithOne(a => a.User)
+                   .HasForeignKey<User>(u => u.AttachmentId)
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

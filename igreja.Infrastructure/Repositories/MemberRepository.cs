@@ -17,7 +17,7 @@ namespace igreja.Infrastructure.Repositories
 
         public async Task<IEnumerable<Member>> GetByChurchIdAsync(Guid churchId)
         {
-            return await _context.Members.Where(m => m.ChurchId == churchId).ToListAsync();
+            return await _context.Members.Where(m => m.IgrejaTenantId == churchId).ToListAsync();
         }
     }
 }
