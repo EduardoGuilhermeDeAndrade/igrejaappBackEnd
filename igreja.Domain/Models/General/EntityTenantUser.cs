@@ -7,7 +7,7 @@
 
         public Guid UserId { get; set; } 
 
-        public Guid TenantId { get; set; } 
+        public Guid IgrejaTenantId { get; set; } 
 
         public DateTime Created { get; set; } = DateTime.UtcNow; 
 

@@ -16,7 +16,7 @@ namespace igreja.Domain.Models
         ////public Guid? MemberId { get; set; } // Pode ou não estar vinculado a um membro
         //public Member Member { get; set; }
 
-        public Guid IgrejaTenantId { get; set; }
+        //public Guid IgrejaTenantId { get; set; }
         public IgrejaTenant IgrejaTenans { get; set; }
 
         // Relacionamento opcional com Attachments (foto de perfil)

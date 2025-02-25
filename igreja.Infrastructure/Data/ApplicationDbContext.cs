@@ -45,7 +45,7 @@ namespace igreja.Infrastructure.Data
 
                     // Propriedades da entidade
                     var isDeletedProperty = Expression.Property(parameter, nameof(EntityTenantUser.Deleted));
-                    var tenantIdProperty = Expression.Property(parameter, nameof(EntityTenantUser.TenantId));
+                    var tenantIdProperty = Expression.Property(parameter, nameof(EntityTenantUser.IgrejaTenantId));
                     var userIdProperty = Expression.Property(parameter, nameof(EntityTenantUser.UserId));
 
                     // Métodos auxiliares para obter os valores dinamicamente
@@ -76,7 +76,7 @@ namespace igreja.Infrastructure.Data
 
         private Expression GetDynamicTenantIdCondition(ParameterExpression parameter)
         {
-            var tenantIdProperty = Expression.Property(parameter, nameof(EntityTenantUser.TenantId));
+            var tenantIdProperty = Expression.Property(parameter, nameof(EntityTenantUser.IgrejaTenantId));
             var tenantIdMethod = typeof(IUserContextProvider).GetMethod(nameof(IUserContextProvider.GetCurrentTenantId));
 
             // Chama _userContextProvider.GetCurrentTenantId() dinamicamente
@@ -144,9 +144,9 @@ namespace igreja.Infrastructure.Data
             {
                 if (entry.Entity is EntityTenantUser entityTenant && entry.State == EntityState.Added)
                 {
-                    if (entityTenant.TenantId == Guid.Empty) // Define apenas se estiver vazio
+                    if (entityTenant.IgrejaTenantId == Guid.Empty) // Define apenas se estiver vazio
                     {
-                        entityTenant.TenantId = tenantId;
+                        entityTenant.IgrejaTenantId = tenantId;
                     }
                 }
             }

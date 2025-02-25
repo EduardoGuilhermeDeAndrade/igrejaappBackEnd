@@ -1,5 +1,7 @@
 ﻿using igreja.Domain.Interfaces;
+using igreja.Domain.Models;
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace igreja.Infrastructure.Providers
 {
@@ -14,13 +16,13 @@ namespace igreja.Infrastructure.Providers
 
         public Guid GetCurrentTenantId()
         {
-            var tenantIdClaim = _httpContextAccessor.HttpContext?.User?.FindFirst("tenantId")?.Value;
+            var tenantIdClaim = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.GivenName)?.Value;
             return string.IsNullOrEmpty(tenantIdClaim) ? Guid.Empty : Guid.Parse(tenantIdClaim);
         }
 
         public Guid GetCurrentUserId()
         {
-            var userIdClaim = _httpContextAccessor.HttpContext?.User?.FindFirst("userId")?.Value;
+            var userIdClaim = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.GivenName)?.Value; 
             return string.IsNullOrEmpty(userIdClaim) ? Guid.Empty : Guid.Parse(userIdClaim);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using igreja.Application.DTOs;
 using igreja.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -16,9 +17,9 @@ public class AuthController : ControllerBase
     [HttpGet("test-token")]
     public IActionResult TestToken()
     {
-        var userId = User.FindFirst("userId")?.Value;
-        var tenantId = User.FindFirst("tenantId")?.Value;
-        return Ok(new { UserId = userId, TenantId = tenantId });
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var tenantId = User.FindFirst(ClaimTypes.GivenName)?.Value;
+        return Ok(new { UserId = userId, IgrejaTenantId = tenantId });
     }
 
 
@@ -31,12 +32,12 @@ public class AuthController : ControllerBase
         return Ok(new { Token = token });
     }
 
-    [HttpPost("logout")]
-    public async Task<IActionResult> Logout()
-    {
-        var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-        await _authService.LogoutAsync(token);
-        return Ok(new { message = "Logout successful" });
-    }
+    //[HttpPost("logout")]
+    //public async Task<IActionResult> Logout()
+    //{
+    //    var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+    //    await _authService.LogoutAsync(token);
+    //    return Ok(new { message = "Logout successful" });
+    //}
 
 }

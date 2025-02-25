@@ -1,5 +1,4 @@
 ﻿using igreja.Application.Interfaces;
-using igreja.Domain.Interfaces;
 using igreja.Domain.Models;
 using Igreja.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -14,13 +13,11 @@ namespace Igreja.Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
-        private readonly IUserContextProvider _userContextProvider;
 
-        public AuthService(IUserRepository userRepository, IConfiguration configuration, IUserContextProvider userContextProvider)
+        public AuthService(IUserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _configuration = configuration;
-            _userContextProvider = userContextProvider;
         }
 
         public string Login(string username, string password)
@@ -29,15 +26,8 @@ namespace Igreja.Application.Services
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
                 return null;
-
+            
             return GenerateJwtToken(user);
-        }
-
-        public async Task<bool> LogoutAsync(string token)
-        {
-            // Limpa o contexto do usuário
-            //_userContextProvider.ClearCurrentUser();
-            return true;
         }
 
         private string GenerateJwtToken(User user)
@@ -46,8 +36,8 @@ namespace Igreja.Application.Services
             {
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim("tenantId", user.TenantId.ToString()),
-                new Claim("userId", user.Id.ToString())
+                new Claim(ClaimTypes.GivenName, user.IgrejaTenantId.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

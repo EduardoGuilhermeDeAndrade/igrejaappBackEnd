@@ -1,13 +1,14 @@
 ﻿using igreja.Application.DTOs.Tenant;
 using igreja.Application.Interfaces;
 using igreja.Domain.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace igreja.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    //[Authorize]
+    [Authorize(Roles = "Admin")]
     public class IgrejaTenantController : ControllerBase
     {
         private readonly IIgrejaTenantService _tenantService;

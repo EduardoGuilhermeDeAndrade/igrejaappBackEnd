@@ -42,9 +42,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             OnTokenValidated = context =>
             {
                 Console.WriteLine("Token validated");
-                Console.WriteLine($"User ID from token: {context.Principal?.FindFirst(ClaimTypes.Name)?.Value}");
-                Console.WriteLine($"User ID from token: {context.Principal?.FindFirst("userId")?.Value}");
-                Console.WriteLine($"Tenant ID from token: {context.Principal?.FindFirst("tenantId")?.Value}");
+                Console.WriteLine($"Name from clain: {context.Principal?.FindFirst(ClaimTypes.Name)?.Value}");
+                Console.WriteLine($"User ID from token: {context.Principal?.FindFirst(ClaimTypes.NameIdentifier)?.Value}");
+                Console.WriteLine($"IgrejaTenant ID from token: {context.Principal?.FindFirst(ClaimTypes.GivenName)?.Value}");
 
 
                 return Task.CompletedTask;
